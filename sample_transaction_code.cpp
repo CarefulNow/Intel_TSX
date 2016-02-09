@@ -1,7 +1,10 @@
 unsigned int transaction = 1;                                                                      
 unsigned int status = 0;                                                
 unsigned int attempts = 8;                                              
-while(1) {                                                              
+while(1) {
+    while(lock_var) {
+    	_mm_pause();
+    }
     if(transaction == 1) {                                              
         status = _xbegin();                                             
     } else {                                                            
